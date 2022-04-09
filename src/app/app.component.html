@@ -1,80 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Inventory</title>
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-
-  </head>
-
-  <body>
-
-    <div class="container">
-      <div class="jumbotron2">
-        <h1>Inventory Dashboard</h1>
-        <h4 class="center">Choose a store to view current inventory levels</h4>
-      </div>
-
-      <div class="row">
-        <div class="col-md-6">
-            <select name="stores" style="width:100%; background-color: black; color: white;">
-                <option value="1" selected>Canada</option>
-                <option value="2">USA</option>
-                <option value="3">UK</option>
-                <option value="4">Japan</option>
-                <option value="5">France</option>
-            </select>
+<amplify-authenticator>
+  <ng-template amplifySlot="authenticated" let-user="user" let-signOut="signOut">
+  <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <title>Inventory</title>
+      <!-- Bootstrap core CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    </head>
+  
+    <body>
+      <div class="container">
+        <h1>Welcome {{ user.attributes.name }}!</h1>
+        <button (click)="signOut()">Sign Out</button>
+        <div class="jumbotron2">
+          <h1>Inventory Dashboard</h1>
+          <div *ngFor="let product of products">
+            <div>Store: {{ product.store }}</div>
+            <div>Product: {{ product.name }}</div>
+            <div>Count: {{ product.count }}</div>
+          </div>
+          <h4 class="center">Choose a store to view current inventory levels</h4>
         </div>
-      </div>
-      <div class="row">
-        <table class="col-md-6 p-8"> 
-            <tr>
-            <th>Store</th> 
-            <th>Item</th>
-            <th>Count</th>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
-        </table>
-
-        <div class="col-md-6 p-8" style="display: block;">
-            <canvas baseChart width="500" height="420"
-            [datasets]="chartData"
-            [labels]="labels"
-            [options]="chartOptions"
-            [legend]="true"
-            [plugins]="barChartPlugins"
-            [type]="barChartType"
-            (chartClick)="onChartClick($event)"></canvas>
+  
+        <div class="row">
+          <div class="col-md-6">
+              <select name="stores" style="width:100%; background-color: black; color: white;">
+                  <option value="1" selected>Canada</option>
+                  <option value="2">USA</option>
+                  <option value="3">UK</option>
+                  <option value="4">Japan</option>
+                  <option value="5">France</option>
+              </select>
+          </div>
         </div>
-      </div>
-     
+        <div class="row">
+          <table class="col-md-6 p-8"> 
+              <tr>
+              <th>Store</th> 
+              <th>Item</th>
+              <th>Count</th>
+              </tr>
+              <tr>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+              </tr>
+          </table>
+  
+          <div class="col-md-6 p-8" style="display: block;">
+              <canvas baseChart width="500" height="420"
+              [datasets]="chartData"
+              [labels]="labels"
+              [options]="chartOptions"
+              [legend]="true"
+              [plugins]="barChartPlugins"
+              [type]="barChartType"
+              (chartClick)="onChartClick($event)"></canvas>
+          </div>
+        </div>
+       
+        <footer class="footer">
+          <p>This page uses an Amazon Cognito identity to retrieve data directly from Amazon DynamoDB.</p>
+        </footer>
+      </div> <!-- /container -->
+  
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+      <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.40.min.js"></script>
+      <script src="chart.min.js"></script>
+      <script src="refresh.js"></script>
+    </body>
+  </html>
+  </ng-template>
+</amplify-authenticator>
 
-      <footer class="footer">
-        <p>This page uses an Amazon Cognito identity to retrieve data directly from Amazon DynamoDB.</p>
-      </footer>
-
-    </div> <!-- /container -->
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.40.min.js"></script>
-    <script src="chart.min.js"></script>
-    <script src="refresh.js"></script>
-
-    
-  </body>
-</html>
 
 <script>
 const ctx = document.getElementById('myChart').getContext('2d');

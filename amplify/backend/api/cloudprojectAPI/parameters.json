@@ -1,0 +1,6 @@
+{
+  "AppSyncApiName": "cloudprojectAPI",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2022-04-08T23:07:03.307Z"
+}

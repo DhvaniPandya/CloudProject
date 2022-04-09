@@ -1,23 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
+import { APIService, Product } from './API.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  title = 'Inventory';
   public barChartType: ChartType = 'bar';
   public barChartLegend = true;
   public barChartPlugins = [];
-  title = 'myapp';
   chartOptions = {
     responsive: true    // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
   }
 
-  labels =  ['Iphone','Samsung','OnePlus','LG','VIVO'];
-
   // STATIC DATA FOR THE CHART IN JSON FORMAT.
+  labels =  ['Iphone','Samsung','OnePlus','LG','VIVO'];
   chartData = [
     {
       label: 'Inventory',
@@ -26,14 +26,17 @@ export class AppComponent {
     }
   ];
 
-  
+  public products: Array<Product> = [];
+  constructor(private api: APIService) { }
+
   // CHART CLICK EVENT.
   onChartClick(event:any) {
     console.log(event);
   }
 
-  constructor() { }
-  
   ngOnInit() {
+    this.api.ListProducts().then((event) => {
+      this.products = event.items as Product[];
+    });
   }
 }
