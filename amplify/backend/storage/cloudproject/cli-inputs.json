@@ -1,0 +1,14 @@
+{
+  "resourceName": "cloudproject",
+  "policyUUID": "e6aef8ed",
+  "bucketName": "cloudproject",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "S3Trigger965f0f49",
+  "groupAccess": {}
+}

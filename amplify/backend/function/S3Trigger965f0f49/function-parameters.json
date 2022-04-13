@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "api": {
+      "cloudprojectAPI": [
+        "Query",
+        "Mutation"
+      ]
+    },
+    "auth": {
+      "CloudProject": [
+        "create"
+      ]
+    }
+  }
+}

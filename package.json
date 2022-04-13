@@ -18,12 +18,16 @@
     "@angular/platform-browser": "~13.2.0",
     "@angular/platform-browser-dynamic": "~13.2.0",
     "@angular/router": "~13.2.0",
+    "@aws-amplify/cli": "^8.0.1",
     "@aws-amplify/ui-angular": "^2.3.8",
     "aws-amplify": "^4.3.19",
+    "aws-sdk": "^2.1113.0",
     "chart.js": "^3.7.1",
     "ng2-charts": "^3.0.8",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
+    "util": "^0.12.4",
+    "uuid": "^8.3.2",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {

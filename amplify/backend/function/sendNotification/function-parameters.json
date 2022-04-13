@@ -1,0 +1,27 @@
+{
+  "permissions": {
+    "api": {
+      "cloudprojectAPI": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    },
+    "auth": {
+      "CloudProject": [
+        "create",
+        "read",
+        "update",
+        "delete"
+      ]
+    },
+    "function": {
+      "S3Trigger965f0f49": [
+        "create",
+        "read",
+        "update"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}

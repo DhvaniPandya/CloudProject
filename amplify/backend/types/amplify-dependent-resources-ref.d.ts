@@ -18,9 +18,23 @@ export type AmplifyDependentResourcesAttributes = {
         }
     },
     "storage": {
-        "s3cloudprojectbucket": {
+        "cloudproject": {
             "BucketName": "string",
             "Region": "string"
+        }
+    },
+    "function": {
+        "S3Trigger965f0f49": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
+        },
+        "sendNotification": {
+            "Name": "string",
+            "Arn": "string",
+            "Region": "string",
+            "LambdaExecutionRole": "string"
         }
     }
 }

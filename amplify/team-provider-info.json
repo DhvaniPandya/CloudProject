@@ -14,6 +14,16 @@
     "categories": {
       "auth": {
         "CloudProject": {}
+      },
+      "function": {
+        "S3Trigger965f0f49": {
+          "deploymentBucketName": "amplify-cloudproject-dev-183757-deployment",
+          "s3Key": "amplify-builds/S3Trigger965f0f49-51366745306a31314555-build.zip"
+        },
+        "sendNotification": {
+          "deploymentBucketName": "amplify-cloudproject-dev-183757-deployment",
+          "s3Key": "amplify-builds/sendNotification-33356c6e6138522f5262-build.zip"
+        }
       }
     }
   }

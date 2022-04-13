@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartDataset, ChartOptions, ChartType } from 'chart.js';
+import { ChartType } from 'chart.js';
 import { APIService, Product } from './API.service';
 
 @Component({
@@ -10,33 +10,69 @@ import { APIService, Product } from './API.service';
 export class AppComponent implements OnInit {
   title = 'Inventory';
   public barChartType: ChartType = 'bar';
+  public chartLabels: any[] = [];
+  public chartData: any[] = [];
+  public colorList: any[] = [];
   public barChartLegend = true;
   public barChartPlugins = [];
-  chartOptions = {
-    responsive: true    // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
+  public chartOptions = {
+    responsive: true,
+    autoSkip: false
   }
-
-  // STATIC DATA FOR THE CHART IN JSON FORMAT.
-  labels =  ['Iphone','Samsung','OnePlus','LG','VIVO'];
-  chartData = [
-    {
-      label: 'Inventory',
-      data: [21, 56, 4, 31, 45, 15, 57, 61, 9, 17, 24, 59] ,
-      backgroundColor: ["red", "green", "blue"],
-    }
-  ];
 
   public products: Array<Product> = [];
+  public products_select: any[] = [];
   constructor(private api: APIService) { }
 
-  // CHART CLICK EVENT.
-  onChartClick(event:any) {
-    console.log(event);
+  async ngOnInit() {
+    this.getAllProducts();
   }
 
-  ngOnInit() {
+  async getAllProducts() {
     this.api.ListProducts().then((event) => {
       this.products = event.items as Product[];
+      this.products_select = Array.from(new Set(this.products.map(a => a.store)))
+        .map(store => {
+          return this.products.find(a => a.store === store)
+        })
+      this.chartLabels = this.products.map(a => a.name);
+      console.log(this.chartLabels);
+      this.products.forEach(e => {
+        this.colorList.push('#' + Math.floor(Math.random() * 16777215).toString(16));
+      });
+      this.chartData = [
+        {
+          label: 'Global Inventory',
+          data: this.products.map(a => a.count),
+          backgroundColor: this.colorList,
+        }
+      ];
     });
+  }
+
+  async getStoreProducts(store_name: string) {
+    this.api.ListProducts({ store: { eq: store_name } }).then((event) => {
+      this.products = event.items as Product[];
+      this.chartLabels = this.products.map(a => a.name);
+      this.products.forEach(e => {
+        this.colorList.push('#' + Math.floor(Math.random() * 16777215).toString(16));
+      });
+      this.chartData = [
+        {
+          label: 'Inventory for: ' + store_name,
+          data: this.products.map(a => a.count),
+          backgroundColor: this.colorList,
+        }
+      ];
+    });
+  }
+
+  async onStoreSelect(event: any) {
+    const store_name = event.target.value;
+    if (store_name == 'null') {
+      this.getAllProducts();
+    } else {
+      this.getStoreProducts(store_name);
+    }
   }
 }
