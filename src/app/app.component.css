@@ -44,7 +44,7 @@ table, th, td {
 /* Customize container */
 @media (min-width: 768px) {
   .container {
-    max-width: 730px;
+    max-width: 1000px;
   }
 }
 .container-narrow > hr {
@@ -90,10 +90,6 @@ table, th, td {
   .row{
       padding: 8px;
   }
-
-  .p-8{
-     padding: 8px;
-  }
 }
 
 #graph {
@@ -107,3 +103,16 @@ table, th, td {
   .lead {
     color:#c6c6c6;
   }
+
+.btn{
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.p-8{
+  padding: 8px;
+}
+
+.m-8{
+margin: 8px;
+}

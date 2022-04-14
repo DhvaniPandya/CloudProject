@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartType } from 'chart.js';
 import { APIService, Product } from './API.service';
+import { AmplifyAuthenticatorModule } from '@aws-amplify/ui-angular';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ export class AppComponent implements OnInit {
   public barChartPlugins = [];
   public chartOptions = {
     responsive: true,
-    autoSkip: false
+    autoSkip: false,
+    fontColor: "white"
   }
 
   public products: Array<Product> = [];
@@ -44,7 +46,7 @@ export class AppComponent implements OnInit {
         {
           label: 'Global Inventory',
           data: this.products.map(a => a.count),
-          backgroundColor: this.colorList,
+          backgroundColor: this.colorList
         }
       ];
     });
@@ -61,7 +63,7 @@ export class AppComponent implements OnInit {
         {
           label: 'Inventory for: ' + store_name,
           data: this.products.map(a => a.count),
-          backgroundColor: this.colorList,
+          backgroundColor: this.colorList
         }
       ];
     });

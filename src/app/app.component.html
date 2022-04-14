@@ -14,15 +14,21 @@
   
     <body>
       <div class="container">
-        <h1>Welcome {{ user.attributes.name }}!</h1>
-        <button (click)="signOut()">Sign Out</button>
+        <div class="row">
+          <div class="col-md-11">
+            <h1>Welcome {{ user.attributes.name }}!</h1>
+          </div>
+          <div class="col-md-1">
+            <button type="button" class="btn btn-primary" (click)="signOut()">Sign Out</button>
+          </div>
+        </div>
         <div class="jumbotron2">
           <h1>Inventory Dashboard</h1>
           <h4 class="center">Choose a store to view current inventory levels</h4>
         </div>
   
         <div class="row">
-          <div class="col-md-6">
+          <div class="col-md-4">
               <select name="stores" (change)="onStoreSelect($event)" style="width:100%; background-color: black; color: white;">
                 <option [value]="null" selected>All Stores</option>
                 <option *ngFor="let product of products_select" [value]="product.store">{{product.store}}</option>
@@ -31,7 +37,7 @@
         </div>
 
         <div class="row">
-          <table class="col-md-6 p-8"> 
+          <table class="col-md-5 m-8"> 
               <tr>
               <th>Store</th> 
               <th>Item</th>
@@ -44,8 +50,8 @@
               </tr>
           </table>
   
-          <div class="col-md-6 p-8" style="display: block;">
-              <canvas baseChart width="500" height="420"
+          <div class="col-md-5 m-8" style="display: block;background-color: azure;">
+              <canvas baseChart width="600" height="600"
               [datasets]="chartData"
               [labels]="chartLabels"
               [options]="chartOptions"
